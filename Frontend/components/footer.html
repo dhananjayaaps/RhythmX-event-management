@@ -1,0 +1,94 @@
+<!-- footer.html -->
+<footer class="footer mt-5 border-top border-dark">
+    <div class="container py-5">
+        <div class="row g-4">
+            <!-- About Section -->
+            <div class="col-md-4">
+                <h4 class="gradient-text mb-3">RhythmX</h4>
+                <p class="text-muted">Connecting the pulse of music events worldwide. Create, collaborate, and celebrate with the ultimate music event ecosystem.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2">
+                <h5 class="text-light mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block">Events</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block">Venues</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block">Vendors</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block">Artists</a></li>
+                </ul>
+            </div>
+
+            <!-- Roles -->
+            <div class="col-md-3">
+                <h5 class="text-light mb-3">Your Role</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block"><i class="fas fa-user-tie me-2"></i>Organizer</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block"><i class="fas fa-headphones me-2"></i>Attendee</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block"><i class="fas fa-store me-2"></i>Vendor</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none mb-2 d-block"><i class="fas fa-archway me-2"></i>Venue Owner</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="text-light mb-3">Contact Us</h5>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Music Street, NY 10001</li>
+                    <li class="mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i>contact@rhytmhx.com</li>
+                    <li><i class="fas fa-headset me-2"></i>24/7 Support</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p class="text-muted mb-0">&copy; 2023 RhythmX. All rights reserved. 
+                    <a href="#" class="text-muted text-decoration-none ms-2">Privacy Policy</a> | 
+                    <a href="#" class="text-muted text-decoration-none ms-2">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: rgba(10, 10, 10, 0.97);
+        backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 2;
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #8a2be2, #00ffff);
+    }
+
+    .footer a:hover {
+        color: #00ffff !important;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .social-links a {
+        transition: 0.3s;
+        font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+        transform: translateY(-3px);
+    }
+</style>
