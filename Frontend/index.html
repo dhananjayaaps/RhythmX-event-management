@@ -28,21 +28,6 @@
             z-index: 1;
         }
 
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        .navbar {
-            background: rgba(10, 10, 10, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .brand-glow {
-            text-shadow: 0 0 15px var(--neon-purple);
-        }
-
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -50,18 +35,32 @@
             padding-top: 80px;
         }
 
-        .role-card {
+        .event-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
             backdrop-filter: blur(5px);
             border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
         }
 
-        .role-card:hover {
+        .event-card:hover {
             transform: translateY(-10px);
             border-color: var(--neon-cyan);
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .event-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
 
         .gradient-text {
@@ -79,6 +78,11 @@
             0% { transform: scale(0.95); opacity: 0.8; }
             50% { transform: scale(1); opacity: 1; }
             100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -99,9 +103,9 @@
                     </h1>
                     <p class="lead mb-4">Connect. Create. Celebrate. The ultimate platform for music event professionals and enthusiasts.</p>
                     <div class="d-flex gap-3">
-                        <button class="btn btn-outline-light btn-lg px-4 pulse-animation">
+                        <a href="#events-section" class="btn btn-outline-light btn-lg px-4 pulse-animation">
                             <i class="fas fa-ticket-alt"></i> Find Events
-                        </button>
+                        </a>
                         <button class="btn btn-primary btn-lg px-4 gradient-bg">
                             <i class="fas fa-users"></i> Join Community
                         </button>
@@ -121,19 +125,76 @@
         </div>
     </section>
 
-    <!-- Roles Section -->
-    <section class="py-5 content-wrapper">
+    <!-- Events Section -->
+    <section id="events-section" class="py-5 content-wrapper">
         <div class="container">
-            <h2 class="text-center mb-5 gradient-text">Your Role in the Rhythm</h2>
+            <h2 class="text-center mb-5 gradient-text">Upcoming Events</h2>
             <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="role-card text-center p-4">
-                        <i class="fas fa-user-tie fa-3x gradient-text mb-3"></i>
-                        <h4>Organizers</h4>
-                        <p>Create and manage events with powerful tools</p>
+                <!-- Event 1 -->
+                <div class="col-md-4">
+                    <div class="event-card">
+                        <div class="position-relative">
+                            <img src="https://source.unsplash.com/600x400/?concert" class="event-img" alt="Concert">
+                            <span class="event-badge badge bg-success">Open</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted"><i class="fas fa-calendar-alt me-2"></i>June 15, 2023</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>NYC</span>
+                            </div>
+                            <h4 class="text-white">Summer Beats Festival</h4>
+                            <p class="event-description">3-day electronic music festival featuring top DJs from around the world.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-success"><i class="fas fa-ticket-alt me-2"></i>150 tickets left</span>
+                                <button class="btn btn-sm btn-outline-light">Details</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Add other role cards -->
+
+                <!-- Event 2 -->
+                <div class="col-md-4">
+                    <div class="event-card">
+                        <div class="position-relative">
+                            <img src="https://source.unsplash.com/600x400/?jazz" class="event-img" alt="Jazz Night">
+                            <span class="event-badge badge bg-success">Open</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted"><i class="fas fa-calendar-alt me-2"></i>June 22, 2023</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Chicago</span>
+                            </div>
+                            <h4 class="text-white">Smooth Jazz Night</h4>
+                            <p class="event-description">Intimate evening with Grammy-winning jazz artists in an acoustic setting.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-success"><i class="fas fa-ticket-alt me-2"></i>42 tickets left</span>
+                                <button class="btn btn-sm btn-outline-light">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="col-md-4">
+                    <div class="event-card">
+                        <div class="position-relative">
+                            <img src="https://source.unsplash.com/600x400/?rock" class="event-img" alt="Rock Concert">
+                            <span class="event-badge badge bg-warning text-dark">Almost Sold Out</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted"><i class="fas fa-calendar-alt me-2"></i>July 5, 2023</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Los Angeles</span>
+                            </div>
+                            <h4 class="text-white">Rock Revolution</h4>
+                            <p class="event-description">Legendary rock bands reunite for one night only in this epic concert.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-warning"><i class="fas fa-ticket-alt me-2"></i>8 tickets left</span>
+                                <button class="btn btn-sm btn-outline-light">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -170,18 +231,14 @@
                 }
             }
         });
-    </script>
 
-    <script>
         // Load NavBar component
         fetch('components/navigation.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
             });
-    </script>
 
-    <script>
         // Load footer component
         fetch('components/footer.html')
             .then(response => response.text())
