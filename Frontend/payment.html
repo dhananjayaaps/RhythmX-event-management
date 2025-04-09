@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | RhythmX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-purple: #8a2be2;
+            --neon-cyan: #0ff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #f8f9fa;
+            --text-secondary: #e9ecef;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 5rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+        }
+
+        .event-summary {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-thumbnail {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .payment-option:hover {
+            border-color: var(--neon-purple);
+        }
+
+        .payment-option.active {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .payment-option i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-option h6 {
+            margin-bottom: 0.25rem;
+        }
+
+        .payment-option small {
+            font-size: 0.75rem;
+        }
+
+        .payment-form {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .btn-proceed {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .ticket-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .ticket-selector button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ticket-count {
+            font-size: 1.2rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .price-summary {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-price {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--neon-cyan);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .payment-methods {
+                flex-wrap: wrap;
+            }
+            .payment-option {
+                min-width: 120px;
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="nav-container"></div>
+
+    <!-- Payment Container -->
+    <div class="container">
+        <div class="payment-container">
+            <h2 class="text-center mb-4"><i class="fas fa-ticket-alt me-2"></i>Complete Your Purchase</h2>
+            
+            <!-- Event Summary -->
+            <div class="event-summary">
+                <img src="https://source.unsplash.com/200x200/?concert" alt="Event" class="event-thumbnail">
+                <div>
+                    <h3 class="event-title">Summer Beats Festival</h3>
+                    <p><i class="fas fa-calendar-alt me-2"></i>June 15-17, 2023</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Central Park, NYC</p>
+                </div>
+            </div>
+
+            <!-- Ticket Selection -->
+            <div class="ticket-selection">
+                <h5>Select Number of Tickets</h5>
+                <div class="ticket-selector">
+                    <button id="decrement-ticket">-</button>
+                    <span id="ticket-count" class="ticket-count">1</span>
+                    <button id="increment-ticket">+</button>
+                    <span>x General Admission ($99 each)</span>
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="price-summary">
+                <div class="price-row">
+                    <span>Ticket Price</span>
+                    <span>$99.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Service Fee</span>
+                    <span>$9.90</span>
+                </div>
+                <div class="price-row total-price">
+                    <span>Total</span>
+                    <span id="total-price">$108.90</span>
+                </div>
+            </div>
+
+            <!-- Payment Methods - Horizontal Layout -->
+            <div class="payment-methods">
+                <div class="payment-option active" data-method="credit">
+                    <i class="far fa-credit-card"></i>
+                    <h6>Credit Card</h6>
+                    <small>Visa, Mastercard</small>
+                </div>
+                
+                <div class="payment-option" data-method="debit">
+                    <i class="fas fa-credit-card"></i>
+                    <h6>Debit Card</h6>
+                    <small>Bank linked</small>
+                </div>
+                
+                <div class="payment-option" data-method="paypal">
+                    <i class="fab fa-paypal"></i>
+                    <h6>PayPal</h6>
+                    <small>Online payment</small>
+                </div>
+                
+                <div class="payment-option" data-method="applepay">
+                    <i class="fab fa-apple-pay"></i>
+                    <h6>Apple Pay</h6>
+                    <small>Mobile payment</small>
+                </div>
+            </div>
+
+            <!-- Payment Forms -->
+            <form id="payment-form">
+                <!-- Credit Card Form (Default) -->
+                <div class="payment-form active" id="credit-form">
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-control bg-dark text-white border-dark" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiration Date</label>
+                            <input type="text" class="form-control bg-dark text-white border-dark" placeholder="MM/YY">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control bg-dark text-white border-dark" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name on Card</label>
+                        <input type="text" class="form-control bg-dark text-white border-dark" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <!-- Debit Card Form -->
+                <div class="payment-form" id="debit-form">
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-control bg-dark text-white border-dark" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiration Date</label>
+                            <input type="text" class="form-control bg-dark text-white border-dark" placeholder="MM/YY">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control bg-dark text-white border-dark" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name on Card</label>
+                        <input type="text" class="form-control bg-dark text-white border-dark" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <!-- PayPal Form -->
+                <div class="payment-form" id="paypal-form">
+                    <div class="text-center py-4">
+                        <p>You will be redirected to PayPal to complete your payment</p>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fab fa-paypal me-2"></i>Continue with PayPal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Apple Pay Form -->
+                <div class="payment-form" id="applepay-form">
+                    <div class="text-center py-4">
+                        <p>Complete payment using Apple Pay</p>
+                        <button type="button" class="btn btn-dark">
+                            <i class="fab fa-apple-pay me-2"></i>Pay with Apple Pay
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-proceed">
+                    <i class="fas fa-lock me-2"></i>Proceed to Payment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load navigation
+        fetch('components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            });
+
+        // Load footer
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+
+        // Ticket counter functionality
+        const decrementBtn = document.getElementById('decrement-ticket');
+        const incrementBtn = document.getElementById('increment-ticket');
+        const ticketCount = document.getElementById('ticket-count');
+        const totalPrice = document.getElementById('total-price');
+
+        let tickets = 1;
+        const ticketPrice = 99;
+        const serviceFeeRate = 0.10;
+
+        function updateTotal() {
+            const subtotal = tickets * ticketPrice;
+            const serviceFee = subtotal * serviceFeeRate;
+            const total = subtotal + serviceFee;
+            totalPrice.textContent = `$${total.toFixed(2)}`;
+        }
+
+        decrementBtn.addEventListener('click', () => {
+            if (tickets > 1) {
+                tickets--;
+                ticketCount.textContent = tickets;
+                updateTotal();
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            if (tickets < 10) {
+                tickets++;
+                ticketCount.textContent = tickets;
+                updateTotal();
+            }
+        });
+
+        // Payment method switching
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const paymentForms = document.querySelectorAll('.payment-form');
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                paymentForms.forEach(form => form.classList.remove('active'));
+                const method = option.getAttribute('data-method');
+                document.getElementById(`${method}-form`).classList.add('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Payment processing would happen here in a real application');
+        });
+    </script>
+</body>
+</html>
