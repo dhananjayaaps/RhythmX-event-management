@@ -124,6 +124,18 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        textarea::placeholder {
+            color: rgba(146, 146, 146, 0.4) !important;
+        }
+
+        input::placeholder {
+            color: rgba(146, 146, 146, 0.4) !important;
+        }
+
+        .text-muted {
+            color: #e9ecef !important;
+        }
+
         .social-divider::before {
             margin-right: 1rem;
         }
@@ -183,9 +195,17 @@
             background: #ff0000;
             transition: width 0.3s;
         }
+
+        .auth-container {
+            margin-top: 400px;
+            margin-bottom: 50px;
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <div id="nav-container"></div>
+
     <div class="container">
         <div class="auth-container">
             <div class="auth-logo">
@@ -259,5 +279,21 @@
             </div>
         </div>
     </div>
+</body>
+   
 
-    <script src="
+    <script>
+        // Load navigation
+        fetch('components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            });
+
+        // Load footer
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>

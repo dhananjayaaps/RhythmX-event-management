@@ -99,6 +99,18 @@
             background: rgba(138, 43, 226, 0.3);
         }
 
+        textarea::placeholder {
+            color: rgba(146, 146, 146, 0.4) !important;
+        }
+
+        input::placeholder {
+            color: rgba(146, 146, 146, 0.4) !important;
+        }
+
+        .text-muted {
+            color: #e9ecef !important;
+        }
+
         .form-section {
             padding: 0 2rem;
         }
@@ -106,7 +118,7 @@
         .form-control, .form-select {
             background-color: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
+            color: var(--text-secondary) !important;
         }
 
         .form-control:focus, .form-select:focus {
@@ -141,6 +153,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.75rem 2rem;
+            color: #e9ecef;
         }
 
         @media (max-width: 992px) {
@@ -326,26 +339,23 @@
 
         // Form submission
         document.querySelector('.btn-publish').addEventListener('click', function() {
-            // Validate form
             const eventTitle = document.getElementById('eventTitle').value;
             if (!eventTitle) {
                 alert('Please enter an event title');
                 return;
             }
             
-            // In a real app, you would submit the form here
             alert('Event would be published in a real application');
             console.log('Event data:', {
                 title: eventTitle,
                 category: document.getElementById('eventCategory').value,
-                // Add all other form fields
             });
         });
 
         // Cancel button
         document.querySelector('.btn-cancel').addEventListener('click', function() {
             if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
-                window.location.href = 'events.html'; // Redirect to events page
+                window.location.href = 'events.html';
             }
         });
     </script>

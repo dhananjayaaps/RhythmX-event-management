@@ -163,9 +163,16 @@
             border-color: var(--neon-purple);
         }
 
+        .auth-container {
+            margin-top: 150px;
+            margin-bottom: 50px;
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <div id="nav-container"></div>
+
     <div class="container">
         <div class="auth-container">
             <div class="auth-logo">
@@ -245,3 +252,19 @@
     </script>
 </body>
 </html>
+
+<script>
+    // Load navigation
+    fetch('components/navigation.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-container').innerHTML = data;
+        });
+
+    // Load footer
+    fetch('components/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        });
+</script>
