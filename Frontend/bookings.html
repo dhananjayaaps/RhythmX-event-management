@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | RhythmX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-purple: #8a2be2;
+            --neon-cyan: #0ff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #f8f9fa;
+            --text-secondary: #e9ecef;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-title {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .booking-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .booking-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 1.5rem;
+        }
+
+        .booking-info {
+            flex: 1;
+        }
+
+        .booking-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .booking-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .booking-meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-meta-item i {
+            margin-right: 0.5rem;
+            color: var(--neon-purple);
+        }
+
+        .booking-details {
+            display: flex;
+            padding: 1.5rem;
+        }
+
+        .booking-detail {
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .booking-detail:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .order-id {
+            color: var(--neon-purple);
+        }
+
+        .no-bookings {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .no-bookings i {
+            font-size: 3rem;
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+        }
+
+        .btn-view-ticket {
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid var(--neon-purple);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            color: var(--neon-cyan) !important;
+        }
+
+        .btn-view-ticket:hover {
+            background: rgba(138, 43, 226, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .booking-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .booking-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .booking-details {
+                flex-direction: column;
+            }
+            
+            .booking-detail {
+                padding: 1rem 0;
+            }
+            
+            .booking-detail:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="nav-container"></div>
+
+    <!-- Booking History Container -->
+    <div class="booking-container">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-ticket-alt me-2"></i>My Bookings</h1>
+            <p class="text-muted">View all your past and upcoming event bookings</p>
+        </div>
+
+        <!-- Booking List -->
+        <div class="booking-list">
+            <!-- Booking 1 -->
+            <div class="booking-card">
+                <div class="booking-header">
+                    <img src="assets/matthew-kalapuch-sqJ4tLBiurw-unsplash.jpg" alt="Event" class="booking-image">
+                    <div class="booking-info">
+                        <h3 class="booking-title">Summer Beats Festival 2023</h3>
+                        <div class="booking-meta">
+                            <div class="booking-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>June 15-17, 2023</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Central Park, NYC</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>2 x General Admission</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-view-ticket">View Ticket</button>
+                </div>
+                <div class="booking-details">
+                    <div class="booking-detail">
+                        <div class="detail-label">Booking ID</div>
+                        <div class="detail-value order-id">#RHYX-78945612</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Booked On</div>
+                        <div class="detail-value">May 28, 2023 at 3:45 PM</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Total Paid</div>
+                        <div class="detail-value">$198.00</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value text-success">Confirmed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking 2 -->
+            <div class="booking-card">
+                <div class="booking-header">
+                    <img src="assets/photo-1506157786151-b8491531f063.avif" alt="Event" class="booking-image">
+                    <div class="booking-info">
+                        <h3 class="booking-title">Smooth Jazz Night</h3>
+                        <div class="booking-meta">
+                            <div class="booking-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>July 8, 2023</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Blue Note, NYC</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>1 x VIP Ticket</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-view-ticket">View Ticket</button>
+                </div>
+                <div class="booking-details">
+                    <div class="booking-detail">
+                        <div class="detail-label">Booking ID</div>
+                        <div class="detail-value order-id">#RHYX-32165498</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Booked On</div>
+                        <div class="detail-value">June 15, 2023 at 10:30 AM</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Total Paid</div>
+                        <div class="detail-value">$129.00</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value text-success">Confirmed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking 3 -->
+            <div class="booking-card">
+                <div class="booking-header">
+                    <img src="assets/premium_photo-1682878077428-5fa306daa68f.avif" alt="Event" class="booking-image">
+                    <div class="booking-info">
+                        <h3 class="booking-title">Rock Revolution Tour</h3>
+                        <div class="booking-meta">
+                            <div class="booking-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>April 22, 2023</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Barclays Center, NYC</span>
+                            </div>
+                            <div class="booking-meta-item">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>3 x General Admission</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-view-ticket">View Ticket</button>
+                </div>
+                <div class="booking-details">
+                    <div class="booking-detail">
+                        <div class="detail-label">Booking ID</div>
+                        <div class="detail-value order-id">#RHYX-14725836</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Booked On</div>
+                        <div class="detail-value">March 10, 2023 at 5:15 PM</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Total Paid</div>
+                        <div class="detail-value">$267.00</div>
+                    </div>
+                    <div class="booking-detail">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value text-muted">Event Completed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load navigation
+        fetch('components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            });
+
+        // Load footer
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+
+        // View ticket buttons
+        document.querySelectorAll('.btn-view-ticket').forEach(button => {
+            button.addEventListener('click', function() {
+                const bookingId = this.closest('.booking-card').querySelector('.order-id').textContent;
+                alert(`Would show ticket for booking ${bookingId} in a real application`);
+                // In a real app, this would open a modal or new page with ticket details
+            });
+        });
+    </script>
+</body>
+</html>
