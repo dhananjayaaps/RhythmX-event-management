@@ -8,199 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --neon-purple: #8a2be2;
-            --neon-cyan: #0ff;
-            --dark-bg: #0a0a0a;
-            --text-primary: #f8f9fa;
-            --text-secondary: #e9ecef;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .auth-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .auth-logo h2 {
-            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-        }
-
-        .form-control {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            padding: 0.75rem 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .form-control:focus {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 0 0.25rem rgba(0, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
-
-        .btn-auth {
-            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
-            border: none;
-            padding: 0.75rem;
-            font-weight: 500;
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-
-        .role-selector {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .role-option {
-            flex: 1;
-            text-align: center;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .role-option:hover {
-            border-color: var(--neon-purple);
-        }
-
-        .role-option.active {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 255, 255, 0.05);
-        }
-
-        .role-option i {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--neon-cyan);
-        }
-
-        .social-login {
-            margin: 1.5rem 0;
-            text-align: center;
-        }
-
-        .social-divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: var(--text-secondary);
-        }
-
-        .social-divider::before,
-        .social-divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        textarea::placeholder {
-            color: rgba(146, 146, 146, 0.4) !important;
-        }
-
-        input::placeholder {
-            color: rgba(146, 146, 146, 0.4) !important;
-        }
-
-        .text-muted {
-            color: #e9ecef !important;
-        }
-
-        .social-divider::before {
-            margin-right: 1rem;
-        }
-
-        .social-divider::after {
-            margin-left: 1rem;
-        }
-
-        .social-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--neon-purple);
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: var(--text-secondary);
-        }
-
-        .auth-footer a {
-            color: var(--neon-cyan);
-            text-decoration: none;
-        }
-
-        .password-strength {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            margin-top: -10px;
-            margin-bottom: 15px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .password-strength-bar {
-            height: 100%;
-            width: 0%;
-            background: #ff0000;
-            transition: width 0.3s;
-        }
-
-        .auth-container {
-            margin-top: 400px;
-            margin-bottom: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="static/styles/styles.css">
+    <link rel="stylesheet" href="static/styles/signup.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -284,14 +93,14 @@
 
     <script>
         // Load navigation
-        fetch('components/navigation.html')
+        fetch('navigation.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
             });
 
         // Load footer
-        fetch('components/footer.html')
+        fetch('footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

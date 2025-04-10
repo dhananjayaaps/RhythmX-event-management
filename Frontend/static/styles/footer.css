@@ -1,0 +1,128 @@
+/* Base Styles */
+.rhythmx-footer {
+    background: #1a1a2e;
+    color: #e6e6e6;
+    padding: 2rem 0;
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.footer-logo {
+    color: #8a2be2;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    color: #b8b8b8;
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: #00ffff;
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+    color: #8a2be2;
+}
+
+.footer-links h4, 
+.footer-contact h4 {
+    color: #00ffff;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-links ul, 
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, 
+.footer-contact li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #e6e6e6;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #8a2be2;
+}
+
+.footer-contact i {
+    color: #00ffff;
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+}
+
+.footer-bottom p {
+    color: #b8b8b8;
+    margin-bottom: 0.5rem;
+}
+
+.legal-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.legal-links a {
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+.legal-links a:hover {
+    color: #00ffff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-brand, 
+    .footer-links, 
+    .footer-contact {
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
